@@ -1,0 +1,41 @@
+var funcionarios = [];
+    while(true){
+        var nome = prompt('Nome do Funcionário(ou digite "SAIR" para encerrar)').trim().toUpperCase()
+        if (nome.toUpperCase() == "SAIR"){
+        break;
+        }
+        var cargo = prompt("Digite seu Cargo").trim().toUpperCase()
+        var salario = parseFloat(prompt("Digite seu salário"))
+        if (isNaN(salario) || (salario < 0)){
+            alert("Salário Inválido")
+            continue;
+        }
+        var aumentoSalarial
+        switch(cargo){
+            case "GERENTE":
+             aumentoSalarial = 0.20
+                break;
+            case "TÉCNICO":
+            case "TECNICO":
+                aumentoSalarial = 0.15
+                break;
+            case "ESTÁGIO":
+            case "ESTAGIO":
+                aumentoSalarial = 0.05
+                break;
+            default:
+                alert("Cargo Inválido")
+                continue;
+        }
+        alert(`Nome: ${nome} | Cargo: ${cargo} foi adicionado com sucesso`)
+        var salarioComAumento = salario + (salario * aumentoSalarial)
+        funcionarios.push({
+    nome: nome,
+    cargo: cargo,
+    salarioFinal: salarioComAumento.toFixed(2),
+        })
+
+    }
+console.log("Funcionários Registrados")
+funcionarios.forEach(f =>{
+    console.log(`Nome: ${f.nome} | Cargo: ${f.cargo} | Salario Com Aumento: ${f.salarioFinal}`)})
